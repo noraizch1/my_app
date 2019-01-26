@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { compileNgModuleFromRender2 } from '@angular/compiler/src/render3/r3_module_compiler';
+import {User} from '../../models/User'
 
 @Component({
     selector: 'app-user',
@@ -8,35 +11,25 @@ import {Component} from '@angular/core';
 })
 
 export class UserComponent {
-    firstname='Noraiz'
-    secondname='azam'
-    age=30
-    address ={
-        street:'hussain street',
-        town:'muslim town',
-        city:'lahore'
-
+    user:{
+       
     }
+
 
     //methods
     constructor(){
-        this.hello()
-        console.log(this.age)
-        this.myage();
-        console.log(this.age)
+        this.user ={
+        firstname:'Noraiz',
+        secondname:'Azam',
+        age:23,
+        address :{
+            street:'hussain street',
+            town:'muslim town',
+            city:'lahore'
+        }
 
+        }
+ }
+    
+ }
 
-    }
-
-    myage(){
-        this.age=this.age+1;
-        console.log(`my age is ${this.age}`)
-        
-
-    }
-
-    hello (){
-        console.log(`hello ${this.firstname}`);
-    }
-
-}
