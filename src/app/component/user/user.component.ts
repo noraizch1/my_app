@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component ,OnInit} from '@angular/core';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { compileNgModuleFromRender2 } from '@angular/compiler/src/render3/r3_module_compiler';
-import {User} from '../../models/User'
+import {User} from '../../models/User';
+
 
 @Component({
     selector: 'app-user',
@@ -10,14 +11,19 @@ import {User} from '../../models/User'
     
 })
 
-export class UserComponent {
-    user:{
-       
-    }
+export class UserComponent implements OnInit {
+    user:User;
 
 
     //methods
     constructor(){
+        
+
+        }
+
+    
+
+    ngOnInit(){
         this.user ={
         firstname:'Noraiz',
         secondname:'Azam',
@@ -25,11 +31,12 @@ export class UserComponent {
         address :{
             street:'hussain street',
             town:'muslim town',
-            city:'lahore'
-        }
+            city:'lahore'   
+    }
 
-        }
+    }    
  }
+ 
     
  }
 
