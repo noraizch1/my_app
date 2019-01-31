@@ -6,94 +6,74 @@ import {User} from '../../models/User';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  user :User={
+    firstname:'',
+    secondname:'',
+    email:''
+
+  }
   users:User[];
   showExtended:boolean=true;
   loaded:boolean=true;
-  enableAdd: boolean = true; 
-  currentClasses ={};
-  currentStyles ={};
-
+  enableAdd: boolean = false; 
+  showUserForm:boolean= false;
 
   constructor() { }
 
   ngOnInit() {
-
+  
       this.users=[
         {
           firstname:'Noraiz',
           secondname:'Azam',
-          age:23,
-          address :{
-              street:'hussain street', 
-              town:'muslim town',
-              city:'lahore'   
-        },
-        image:'http://lorempixel.com/600/600/people/3',
+          email : 'noraiz.ch410@gmail.com',
+        
         isActive :true,
-        balance : 100,
-        registered : new Date ('01/02/2018 08:30:00')
+        registered : new Date ('01/02/2018 08:30:00'),
+        hide:true
 
       },
       {
         firstname:'sherry',
         secondname:'wahiyat',
-        age:25,
-        address :{
-            street:'hussain street',
-            town:'township',
-            city:'lahore'   
-      },
-      image:'http://lorempixel.com/600/600/people/2',
-      isActive :false,
-      balance : 400,
-        registered : new Date ('01/02/2018 10:30:00')
+        email : 'sherry@gmail.com',
+        isActive :false,
+        registered : new Date ('01/02/2018 10:30:00'),
+        hide:true
     },
     {
       firstname:'Ammar',
       secondname:'iqbal',
-      age:24,
-      address :{
-          street:'hussain street',
-          town:'muslim town',
-          city:'faislabad'   
-    },
-    image:'http://lorempixel.com/600/600/people/1',
-    isActive :true,
-    balance : 200,
-        registered : new Date ('01/02/2018 09:30:00')
+      email : 'Ammar@gmail.com',  
+      isActive :true,
+      registered : new Date ('01/02/2018 09:30:00'),
+        hide:true
   }            
       ];
       this.loaded=true;
-    
-    
-  // this.addUser({
-    //  firstname:'husnain',
-    //  secondname:'butt'
-    //});
 
-    this.setCurrentClasses();
-    this.setCurrentStyles();
-
+  
   }
 
 
-  addUser(user:User){
-    this.users.push(user);
+//   addUser(){
+//     this.user.isActive = true;
+//     this.user.registered = new Date();
+//     this.users.unshift(this.user);
 
+//     this.user = {
+//     firstname:'',
+//     secondname:'',
+//     email : '',
 
-}
-  setCurrentClasses(){
-    this.currentClasses={
-      'btn-success':this.enableAdd,
-      'big-text':this.showExtended
-   }
+//   }
+// }
+
+  onSubmit(e:any){
+    console.log(123);
+
+    e.preventDefault();
   }
 
-  setCurrentStyles(){
-    this.currentStyles ={
-      'padding-top': this.showExtended ? '0' : '40px'
-    }
-
-
   }
-}
+
