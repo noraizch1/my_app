@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild } from '@angular/core';
+import {UserService } from '../../services/user.service';
 import {User} from '../../models/User';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -10,48 +12,28 @@ export class UsersComponent implements OnInit {
     firstname:'',
     secondname:'',
     email:''
-
   }
   users:User[];
   showExtended:boolean=true;
-  loaded:boolean=true;
+  loaded:boolean=false;
   enableAdd: boolean = false; 
   showUserForm:boolean= false;
+  @ViewChild('userForm')form: any;
+  data:any
 
-  constructor() { }
+  constructor( private userService : UserService ) {  }
 
   ngOnInit() {
-  
-      this.users=[
-        {
-          firstname:'Noraiz',
-          secondname:'Azam',
-          email : 'noraiz.ch410@gmail.com',
-        
-        isActive :true,
-        registered : new Date ('01/02/2018 08:30:00'),
-        hide:true
+    this.userService.getData().subscribe(data =>{
+      console.log(data);
+    });
 
-      },
-      {
-        firstname:'sherry',
-        secondname:'wahiyat',
-        email : 'sherry@gmail.com',
-        isActive :false,
-        registered : new Date ('01/02/2018 10:30:00'),
-        hide:true
-    },
-    {
-      firstname:'Ammar',
-      secondname:'iqbal',
-      email : 'Ammar@gmail.com',  
-      isActive :true,
-      registered : new Date ('01/02/2018 09:30:00'),
-        hide:true
-  }            
-      ];
+
+
+    this.userService.getUsers().subscribe(users =>{
+      this.users=users;
       this.loaded=true;
-
+    });
   
   }
 
@@ -69,10 +51,17 @@ export class UsersComponent implements OnInit {
 //   }
 // }
 
-  onSubmit(e:any){
-    console.log(123);
+  onSubmit({value,valid}:{value: User,valid: boolean}){
+if(!valid){
+  console.log('form is not valid');
+}    else {
+  value.isActive=true;
+  value.registered=new Date();
+  value.hide=true;
+  this.userService.addUser(value);
 
-    e.preventDefault();
+  this.form.reset();
+}
   }
 
   }
